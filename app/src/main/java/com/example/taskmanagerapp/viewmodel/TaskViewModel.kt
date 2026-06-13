@@ -37,9 +37,10 @@ class TaskViewModel(
                 tasks.clear()
                 tasks.addAll(localTasks)
                 taskUiState = UiState.Success(tasks)
-            } else {
-                taskUiState = UiState.Loading
+                return@launch
             }
+
+            taskUiState = UiState.Loading
 
             try {
                 val response = repository.getRemoteTasks()
